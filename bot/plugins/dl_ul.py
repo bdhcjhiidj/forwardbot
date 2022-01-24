@@ -85,11 +85,11 @@ async def _(event):
 async def _(e):
     link = f"downloads/{e.text.split()[1]}"
     x = e.edit("`Downloading...`")
-    # cap = await fast_download(x, link)
-    success, error = await bash(f"wget {link}")
-    if error:
-        return LOGS.info(str(error))
-    await x.edit(f"Successfully Downloaded\n**Path** : `{link}`")
+    cap = await fast_download(x, link)
+    # success, error = await bash(f"wget {link}")
+    # if error:
+        # return LOGS.info(str(error))
+    await x.edit(f"Successfully Downloaded\n**Path** : `{cap}`")
 
 
 @bot.on(events.NewMessage(incoming=True, pattern="\\/dl"))
@@ -164,8 +164,8 @@ async def _(e):
         return
     link = f"downloads/{e.text.split()[1]}"
     x = e.reply("`Downloading...`")
-    # cap = await fast_download(x, link)
-    success, error = await bash(f"wget {link}")
-    if error:
-        return LOGS.info(str(error))
-    await x.edit(f"Successfully Downloaded\n**Path** : `{link}`")
+    cap = await fast_download(x, link)
+    # success, error = await bash(f"wget {link}")
+    # if error:
+        # return LOGS.info(str(error))
+    await x.edit(f"Successfully Downloaded\n**Path** : `{cap}`")
