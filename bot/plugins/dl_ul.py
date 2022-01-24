@@ -88,7 +88,7 @@ async def _(e):
     cap = await fast_download(x, link)
     # success, error = await bash(f"wget {link}")
     # if error:
-        # return LOGS.info(str(error))
+    # return LOGS.info(str(error))
     await x.edit(f"Successfully Downloaded\n**Path** : `{cap}`")
 
 
@@ -167,5 +167,5 @@ async def _(e):
     cap = await fast_download(x, link)
     # success, error = await bash(f"wget {link}")
     # if error:
-        # return LOGS.info(str(error))
+    # return LOGS.info(str(error))
     await x.edit(f"Successfully Downloaded\n**Path** : `{cap}`")
