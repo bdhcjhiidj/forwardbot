@@ -58,8 +58,8 @@ HELP_MENU = (
     + "__Owner Restricted Command__\n\n"
     + "• `/auth <id/reply>` - **Will Authorised that user**\n"
     + "• `/remauth <id/reply>` - **Will Unauthorised that user**\n"
-    + "• `/ban <id/reply> - **Will ban the user**\n"
-    + "• `/unban <id/reply> - *Will unban the user**\n"
+    + "• `/ban <id/reply>` - **Will ban the user**\n"
+    + "• `/unban <id/reply>` - **Will unban the user**\n"
 )
 
 MORE_HELP = (
@@ -134,7 +134,8 @@ async def hlp(event):
 
 @user.on(events.NewMessage(outgoing=True, pattern="\\.help"))
 async def _(event):
-    await event.reply(HELP_MENU, buttons=[[Button.inline("MORE", data="nn")]])
+    await event.reply(HELP_MENU)
+    await event.reply(f"__More Help__\n\n{MORE_HELP}")
 
 
 @bot.on(events.callbackquery.CallbackQuery(data=re.compile("mm")))
@@ -142,6 +143,3 @@ async def _(e):
     await e.edit(MORE_HELP)
 
 
-@user.on(events.callbackquery.CallbackQuery(data=re.compile("nn")))
-async def _(e):
-    await e.edit(MORE_HELP)
