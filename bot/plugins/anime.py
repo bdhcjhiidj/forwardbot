@@ -211,7 +211,7 @@ async def get_anime(event):
             return await event.reply(
                 "What should i search ? Gib me Something to Search"
             )
-    await event.reply("Searching Anime..")
+    x = await event.reply("Searching Anime..")
     jikan = jikanpy.jikan.Jikan()
     search_result = jikan.search("anime", input_str)
     first_mal_id = search_result["results"][0]["mal_id"]
@@ -227,7 +227,7 @@ async def get_anime(event):
             caption=caption,
             parse_mode="HTML",
         )
-        await catevent.delete()
+        await x.delete()
         os.remove(anime_path)
     except BaseException:
         image = getBannerLink(first_mal_id, True)
