@@ -14,6 +14,10 @@ from . import *
 
 jikan = Jikan()
 
+
+anilisturl = "https://graphql.anilist.co"
+animnefillerurl = "https://www.animefillerlist.com/shows/"
+
 anime_query = """
 query ($id: Int, $idMal:Int, $search: String, $type: MediaType, $asHtml: Boolean) {
   Media (id: $id, idMal: $idMal, search: $search, type: $type) {
