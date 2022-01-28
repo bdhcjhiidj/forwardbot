@@ -293,7 +293,7 @@ async def get_anime(event):
             return await event.reply(
                 "What should i search ? Gib me Something to Search"
             )
-    x = await event.reply("Searching Anime..")
+    x = await event.reply("`Searching Anime...`")
     jikan = jikanpy.jikan.Jikan()
     search_result = jikan.search("anime", input_str)
     first_mal_id = search_result["results"][0]["mal_id"]
