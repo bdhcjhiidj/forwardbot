@@ -28,7 +28,7 @@ HELP_MENU = (
     + "• `/fwd` - **Reply to any file/media/message to Forward the message to Dump channel**\n"
     + "• `/setredis <key> <value>` - **Will SET with given key and value in the database**\n"
     + "• `/getredis <key>` - **Will GET value of given key from the database**\n"
-    + "• `/delredis <key> - **Will DELETE the given key from the database**\n"
+    + "• `/delredis <key>` - **Will DELETE the given key from the database**\n"
     + "• `/allkeys` - **Will give list of all KEYS in your Database**\n"
     + "• `/setthumb <telegraph link>` - **Will set Thumbnail**\n"
     + "• `/webdump <link> <filename> <caption>` - **It will download the file from link and dump it in DUMP_CHANNEL, filename required**\n"
