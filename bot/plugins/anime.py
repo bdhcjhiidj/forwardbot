@@ -1,4 +1,4 @@
-# ported from catuserbot
+# ported from https://github.com/sandy1709/catuserbot
 # modified by @kaif-00z
 
 import textwrap
