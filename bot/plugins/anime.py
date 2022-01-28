@@ -26,7 +26,7 @@ query ($id: Int, $idMal:Int, $search: String, $type: MediaType, $asHtml: Boolean
     }
     format
     status
-    type 
+    type
     description (asHtml: $asHtml)
     startDate {
       year
@@ -79,6 +79,7 @@ query ($id: Int, $idMal:Int, $search: String, $type: MediaType, $asHtml: Boolean
   }
 }
 """
+
 
 async def anime_json_synomsis(query, vars_):
     """Makes a Post to https://graphql.anilist.co."""
