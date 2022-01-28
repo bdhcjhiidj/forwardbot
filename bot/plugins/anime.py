@@ -3,9 +3,9 @@
 
 import textwrap
 
+import jikanpy
 import requests
 from html_telegraph_poster import TelegraphPoster
-import jikanpy
 from jikanpy import Jikan
 from pySmartDL import SmartDL
 
