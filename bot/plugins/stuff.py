@@ -141,5 +141,3 @@ async def _(event):
 @bot.on(events.callbackquery.CallbackQuery(data=re.compile("mm")))
 async def _(e):
     await e.edit(MORE_HELP)
-
-
