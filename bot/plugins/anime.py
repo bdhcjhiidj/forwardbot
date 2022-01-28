@@ -291,9 +291,49 @@ async def get_anime(event):
             input_str = reply.text
         else:
             return await event.reply(
-                "What should i search ? Gib me Something to Search"
+                "`What should i search ? Gib me Something to Search`"
             )
     x = await event.reply("`Searching Anime...`")
+    jikan = jikanpy.jikan.Jikan()
+    search_result = jikan.search("anime", input_str)
+    first_mal_id = search_result["results"][0]["mal_id"]
+    caption, image = await get_anime_manga(first_mal_id, "anime_anime", event.chat_id)
+    try:
+        downloader = SmartDL(image, anime_path, progress_bar=False)
+        downloader.start(blocking=False)
+        while not downloader.isFinished():
+            pass
+        await event.client.send_file(
+            event.chat_id,
+            file=anime_path,
+            caption=caption,
+            parse_mode="HTML",
+        )
+        await x.delete()
+        os.remove(anime_path)
+    except BaseException:
+        image = getBannerLink(first_mal_id, True)
+        await event.client.send_file(
+            event.chat_id,
+            file=image,
+            caption=caption,
+            parse_mode="HTML",
+        )
+        await x.delete()
+
+
+@user.on(events.NewMessage(outgoing=True, pattern="\\.anime"))
+async def get_anime(event):
+    input_str = event.text.split(" ", maxsplit=1)[1]
+    reply = await event.get_reply_message()
+    if not input_str:
+        if reply:
+            input_str = reply.text
+        else:
+            return await event.edit(
+                "`What should i search ? Gib me Something to Search`"
+            )
+    x = await event.edit("`Searching Anime...`")
     jikan = jikanpy.jikan.Jikan()
     search_result = jikan.search("anime", input_str)
     first_mal_id = search_result["results"][0]["mal_id"]
