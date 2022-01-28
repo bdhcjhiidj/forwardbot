@@ -3,16 +3,17 @@
 
 import textwrap
 
+import aiohttp
 import jikanpy
 import requests
 from html_telegraph_poster import TelegraphPoster
 from jikanpy import Jikan
 from pySmartDL import SmartDL
-import aiohttp
 
 from . import *
 
 jikan = Jikan()
+
 
 async def anime_json_synomsis(query, vars_):
     """Makes a Post to https://graphql.anilist.co."""
@@ -22,6 +23,7 @@ async def anime_json_synomsis(query, vars_):
         ) as post_con:
             json_data = await post_con.json()
     return json_data
+
 
 async def post_to_telegraph(page_title, html_format_content):
     post_client = TelegraphPoster(use_api=True)
