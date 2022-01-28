@@ -1,12 +1,14 @@
 # ported from catuserbot
 # modified by @kaif-00z
 
-from . import *
 import textwrap
+
 import requests
 from html_telegraph_poster import TelegraphPoster
 from jikanpy import Jikan
 from pySmartDL import SmartDL
+
+from . import *
 
 jikan = Jikan()
 
@@ -30,12 +32,14 @@ def getPosterLink(mal):
     image = requests.get(f"https://kitsu.io/api/edge/anime/{kitsu}").json()
     return image["data"]["attributes"]["posterImage"]["original"]
 
+
 def getKitsu(mal):
     # get kitsu id from mal id
     link = f"https://kitsu.io/api/edge/mappings?filter[external_site]=myanimelist/anime&filter[external_id]={mal}"
     result = requests.get(link).json()["data"][0]["id"]
     link = f"https://kitsu.io/api/edge/mappings/{result}/item?fields[anime]=slug"
     return requests.get(link).json()["data"]["id"]
+
 
 def getBannerLink(mal, kitsu_search=True, anilistid=0):
     # try getting kitsu backdrop
@@ -207,7 +211,7 @@ async def get_anime(event):
             return await event.reply(
                 "What should i search ? Gib me Something to Search"
             )
-    x = await event.reply("Searching Anime..")
+    await event.reply("Searching Anime..")
     jikan = jikanpy.jikan.Jikan()
     search_result = jikan.search("anime", input_str)
     first_mal_id = search_result["results"][0]["mal_id"]
@@ -233,4 +237,3 @@ async def get_anime(event):
             caption=caption,
             parse_mode="HTML",
         )
-            
