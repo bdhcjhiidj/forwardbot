@@ -319,3 +319,4 @@ async def get_anime(event):
             caption=caption,
             parse_mode="HTML",
         )
+        await x.delete()
