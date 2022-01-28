@@ -14,6 +14,71 @@ from . import *
 
 jikan = Jikan()
 
+anime_query = """
+query ($id: Int, $idMal:Int, $search: String, $type: MediaType, $asHtml: Boolean) {
+  Media (id: $id, idMal: $idMal, search: $search, type: $type) {
+    id
+    idMal
+    title {
+      romaji
+      english
+      native
+    }
+    format
+    status
+    type 
+    description (asHtml: $asHtml)
+    startDate {
+      year
+      month
+      day
+    }
+    season
+    episodes
+    duration
+    countryOfOrigin
+    source (version: 2)
+    trailer {
+      id
+      site
+      thumbnail
+    }
+    coverImage {
+      extraLarge
+    }
+    bannerImage
+    genres
+    averageScore
+    nextAiringEpisode {
+      airingAt
+      timeUntilAiring
+      episode
+    }
+    isAdult
+    characters (role: MAIN, page: 1, perPage: 10) {
+      nodes {
+        id
+        name {
+          full
+          native
+        }
+        image {
+          large
+        }
+        description (asHtml: $asHtml)
+        siteUrl
+      }
+    }
+    studios (isMain: true) {
+      nodes {
+        name
+        siteUrl
+      }
+    }
+    siteUrl
+  }
+}
+"""
 
 async def anime_json_synomsis(query, vars_):
     """Makes a Post to https://graphql.anilist.co."""
