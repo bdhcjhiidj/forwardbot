@@ -175,7 +175,7 @@ async def _(e):
     if not (is_auth(e.sender_id)):
         return
     link = f"{e.text.split()[1]}"
-    x = awsit e.reply("`Downloading...`")
+    x = await e.reply("`Downloading...`")
     # cap = await fast_download(x, link)
     success, error = await bash(f"wget {link}")
     if error:
