@@ -6,7 +6,8 @@ from . import *
 telegraph = Telegraph()
 telegraph.create_account(short_name="Bot")
 
-@bot.on(events.NewMessage(incoming=True,pattern="/telegraph"))
+
+@bot.on(events.NewMessage(incoming=True, pattern="/telegraph"))
 async def _(event):
     if not (is_auth(event.sender_id)):
         return
@@ -26,7 +27,7 @@ async def _(event):
                 await event.reply(f"Error Occurred - {e}")
 
 
-@user.on(events.NewMessage(outgoing=True,pattern=".telegraph"))
+@user.on(events.NewMessage(outgoing=True, pattern=".telegraph"))
 async def _(event):
     if not event.reply_to:
         return await event.edit("`Plz Reply to photo,gif,media`")
@@ -42,4 +43,3 @@ async def _(event):
             except Exception as e:
                 LOGS.info(str(e))
                 await event.edit(f"Error Occurred - {e}")
-
