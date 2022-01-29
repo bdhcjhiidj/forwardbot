@@ -99,7 +99,7 @@ async def _(event):
     if event.reply_to:
         fname = ""
         try:
-            fname = f"downloads/{e.text.split()[1]}"
+            fname = f"downloads/{event.text.split()[1]}"
         except BaseException:
             pass
         x = await event.reply("`Downloading...`")
@@ -107,7 +107,7 @@ async def _(event):
         reply = await event.get_reply_message()  # ignore pylint
         filename = f"downloads/{reply.file.name}"  # ignore pylint
         file = reply.document
-        if fname:
+        if fname.strip():
             filename = fname
         with open(filename, "wb") as f:
             ok = await download_file(
@@ -129,13 +129,13 @@ async def _(e):
         return
     path = ""
     ttt = time.time()
-    x = event.reply("`Uploading...`")
+    x = e.reply("`Uploading...`")
     try:
-        path = event.text.split()[1]
+        path = e.text.split()[1]
     except BaseException:
         pass
     if not path:
-        return event.edit("Please give file path to upload")
+        return e.edit("Please give file path to upload")
     with open(path, "rb") as s:
         ok = await upload_file(
             client=bot,
@@ -147,14 +147,14 @@ async def _(e):
         )
     if os.path.isfile("thumb.jpg"):
         await bot.send_file(
-            event.chat_id,
+            e.chat_id,
             ok,
             force_document=True,
             thumb="thumb.jpg",
             caption=f"`{path}`",
         )
     else:
-        await bot.send_file(event.chat_id, ok, force_document=True, caption=f"`{path}`")
+        await bot.send_file(e.chat_id, ok, force_document=True, caption=f"`{path}`")
     await x.delete()
 
 
