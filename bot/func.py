@@ -147,7 +147,7 @@ async def fast_download(e, download_url, filename=None):
                     if chunk:
                         f.write(chunk)
                         downloaded_size += len(chunk)
-                    if progress_callback and total_size:
+                    if total_size:
                         await _maybe_await(
                             progress_callback(downloaded_size, total_size)
                         )
