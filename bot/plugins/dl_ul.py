@@ -22,7 +22,7 @@ async def _(event):
     if event.reply_to:
         fname = ""
         try:
-            fname = f"downloads/{e.text.split()[1]}"
+            fname = f"downloads/{e.text.split(" ", maxsplit=1)[1]}"
         except BaseException:
             pass
         x = await event.edit("`Downloading...`")
@@ -52,7 +52,7 @@ async def _(event):
     ttt = time.time()
     x = event.edit("`Uploading...`")
     try:
-        path = event.text.split()[1]
+        path = event.text.split(" ", maxsplit=1)[1]
     except BaseException:
         pass
     if not path:
@@ -90,11 +90,9 @@ async def _(event):
 async def _(e):
     link = f"{e.text.split()[1]}"
     x = await e.edit("`Downloading...`")
-    # cap = await fast_download(x, link)
-    success, error = await bash(f"wget {link}")
-    if error:
-        return LOGS.info(str(error))
-    await x.edit(f"Successfully Downloaded\n**Path** : `{link}`")
+    cap = await fast_download(x, link)
+    # success, error = await bash(f"wget {link}")
+    await x.edit(f"Successfully Downloaded\n**Path** : `{cap}`")
 
 
 @bot.on(events.NewMessage(incoming=True, pattern="\\/dl"))
@@ -104,7 +102,7 @@ async def _(event):
     if event.reply_to:
         fname = ""
         try:
-            fname = f"downloads/{event.text.split()[1]}"
+            fname = f"downloads/{event.text.split(" ", maxsplit=1)[1]}"
         except BaseException:
             pass
         x = await event.reply("`Downloading...`")
@@ -136,7 +134,7 @@ async def _(e):
     ttt = time.time()
     x = await e.reply("`Uploading...`")
     try:
-        path = e.text.split()[1]
+        path = e.text.split(" ", maxsplit=1)[1]
     except BaseException:
         pass
     if not path:
@@ -176,8 +174,6 @@ async def _(e):
         return
     link = f"{e.text.split()[1]}"
     x = await e.reply("`Downloading...`")
-    # cap = await fast_download(x, link)
-    success, error = await bash(f"wget {link}")
-    if error:
-        return LOGS.info(str(error))
+    cap = await fast_download(x, link, )
+    # success, error = await bash(f"wget {link}")
     await x.edit(f"Successfully Downloaded\n**Path** : `{link}`")
