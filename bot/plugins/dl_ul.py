@@ -66,13 +66,14 @@ async def _(event):
                 progress(d, t, x, ttt, "uploading..")
             ),
         )
+    n = path.split("/")[1]
     if os.path.isfile("thumb.jpg"):
         await user.send_file(
             event.chat_id,
             ok,
             force_document=True,
             thumb="thumb.jpg",
-            caption=f"`{path.split(" / ")[1]}`",  # ignore: pylint
+            caption=f"`{n}`" # ignore: pylint
         )
     else:
         await user.send_file(
@@ -80,7 +81,7 @@ async def _(event):
             event.chat_id,
             ok,
             force_document=True,
-            caption=f"`{path.split(" / ")[1]}`",
+            caption=f"`{n}`",
         )
     await x.edit("Successfully Uploaded the File")
 
@@ -149,13 +150,14 @@ async def _(e):
                 progress(d, t, x, ttt, "uploading..")
             ),
         )
+    n = path.split("/")[1]
     if os.path.isfile("thumb.jpg"):
         await bot.send_file(
             e.chat_id,
             ok,
             force_document=True,
             thumb="thumb.jpg",
-            caption=f"`{path.split(" / ")[1]}`",  # ignore pylint
+            caption=f"`{n}`",  # ignore pylint
         )
     else:
         await bot.send_file(
@@ -163,7 +165,7 @@ async def _(e):
             e.chat_id,
             ok,
             force_document=True,
-            caption=f"`{path.split(" / ")[1]}`",
+            caption=f"`{n}`",
         )
     await x.delete()
 
