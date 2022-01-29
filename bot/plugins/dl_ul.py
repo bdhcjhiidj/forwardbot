@@ -174,6 +174,9 @@ async def _(e):
         return
     link = f"{e.text.split()[1]}"
     x = await e.reply("`Downloading...`")
-    cap = await fast_download(x, link, )
+    cap = await fast_download(
+        x,
+        link,
+    )
     # success, error = await bash(f"wget {link}")
     await x.edit(f"Successfully Downloaded\n**Path** : `{link}`")
