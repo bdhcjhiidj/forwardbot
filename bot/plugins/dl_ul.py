@@ -72,11 +72,11 @@ async def _(event):
             ok,
             force_document=True,
             thumb="thumb.jpg",
-            caption=f"`{path.split("/")[1]}`",
+            caption=f"`{path.split(" / ")[1]}`",
         )
     else:
         await user.send_file(
-            event.chat_id, ok, force_document=True, caption=f"`{path.split("/")[1]}`"
+            event.chat_id, ok, force_document=True, caption=f"`{path.split(" / ")[1]}`"
         )
     await x.edit("Successfully Uploaded the File")
 
@@ -151,10 +151,12 @@ async def _(e):
             ok,
             force_document=True,
             thumb="thumb.jpg",
-            caption=f"`{path.split("/")[1]}`",
+            caption=f"`{path.split(" / ")[1]}`",
         )
     else:
-        await bot.send_file(e.chat_id, ok, force_document=True, caption=f"`{path.split("/")[1]}`")
+        await bot.send_file(
+            e.chat_id, ok, force_document=True, caption=f"`{path.split(" / ")[1]}`"
+        )
     await x.delete()
 
 
