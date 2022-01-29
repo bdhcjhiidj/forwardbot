@@ -4,6 +4,7 @@ aiofiles
 tgcrypto
 python-decouple
 jikanpy
+telegraph
 html-telegraph-poster
 pySmartDL
 git+https://github.com/kaif-00z/heroku3.py
