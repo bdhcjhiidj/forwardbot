@@ -83,7 +83,7 @@ async def _(event):
 
 @user.on(events.NewMessage(outgoing=True, pattern="\\.linkdl"))
 async def _(e):
-    link = f"downloads/{e.text.split()[1]}"
+    link = f"{e.text.split()[1]}"
     x = e.edit("`Downloading...`")
     # cap = await fast_download(x, link)
     success, error = await bash(f"wget {link}")
@@ -164,7 +164,7 @@ async def _(e):
 async def _(e):
     if not (is_auth(e.sender_id)):
         return
-    link = f"downloads/{e.text.split()[1]}"
+    link = f"{e.text.split()[1]}"
     x = e.reply("`Downloading...`")
     # cap = await fast_download(x, link)
     success, error = await bash(f"wget {link}")
