@@ -73,7 +73,7 @@ async def _(event):
             ok,
             force_document=True,
             thumb="thumb.jpg",
-            caption=f"`{n}`" # ignore: pylint
+            caption=f"`{n}`",  # ignore: pylint
         )
     else:
         await user.send_file(
