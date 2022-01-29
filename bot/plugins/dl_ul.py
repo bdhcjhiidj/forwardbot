@@ -129,7 +129,7 @@ async def _(e):
         return
     path = ""
     ttt = time.time()
-    x = e.reply("`Uploading...`")
+    x = await e.reply("`Uploading...`")
     try:
         path = e.text.split()[1]
     except BaseException:
