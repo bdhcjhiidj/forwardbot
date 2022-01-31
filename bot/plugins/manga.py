@@ -18,6 +18,8 @@ async def _(e):
             hide_via=True,
         )
         await bot.send_message(e.chat_id, ok)
-        return await msg.delete()
+        await msg.delete()
+        await ok.delete()
+        return
     except Exception:
         return await msg.edit("`No Results Found`")
