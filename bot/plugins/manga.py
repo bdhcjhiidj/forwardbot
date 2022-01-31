@@ -12,7 +12,6 @@ async def _(e):
     try:
         animes = await user.inline_query("animedb_bot", f"<m> {keyword}")
         ok = await animes[0].click(
-            e.chat_id,
             reply_to=e.reply_to_msg_id,
             silent=True if e.is_reply else False,
             hide_via=True,
