@@ -3,7 +3,7 @@ from . import *
 INLOCK = "`Seems like inline messages aren't allowed here`"
 
 
-@bot.on(events.NewMessage(incoming=True,pattern="/manga"))
+@bot.on(events.NewMessage(incoming=True, pattern="/manga"))
 async def _(e):
     msg = await e.reply("`Searching ...`")
     keyword = e.text.split(" ", maxsplit=1)[1]
