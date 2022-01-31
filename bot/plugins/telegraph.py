@@ -9,8 +9,6 @@ telegraph.create_account(short_name="Bot")
 
 @bot.on(events.NewMessage(incoming=True, pattern="/telegraph"))
 async def _(event):
-    if not (is_auth(event.sender_id)):
-        return
     if not event.reply_to:
         return await event.reply("`Plz Reply to photo,gif,media`")
     if event.reply_to_msg_id:
