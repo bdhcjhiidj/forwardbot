@@ -4,7 +4,7 @@ from . import *
 @bot.on(events.NewMessage(incoming=True, pattern="/shift (.*)"))
 async def _(e):
     if not (is_auth(e.sender_id)):
-        return 
+        return
     x = e.pattern_match.group(1)
     z = await e.reply("`processing..`")
     a, b = x.split("|")
