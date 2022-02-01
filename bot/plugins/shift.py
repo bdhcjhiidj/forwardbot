@@ -1,7 +1,7 @@
 from . import *
 
 
-@bot.on(events.NewMessage(pattern="shift (.*)"))
+@bot.on(events.NewMessage(incoming=True, pattern="/shift (.*)"))
 async def _(e):
     x = e.pattern_match.group(1)
     z = await e.reply("`processing..`")
