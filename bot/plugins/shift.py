@@ -1,7 +1,6 @@
 from . import *
 
 
-
 @bot.on(events.NewMessage(pattern="shift (.*)"))
 async def _(e):
     x = e.pattern_match.group(1)
@@ -28,6 +27,6 @@ async def _(e):
             await asyncio.sleep(0.5)
             m = await bot.get_messages(int(c), ids=msg.id)
             await bot.send_message(int(d), m)
-        except:
+        except BaseException:
             pass
     await z.edit("Done")
