@@ -31,6 +31,7 @@ HELP_MENU = (
     + "• `/delredis <key>` - **Will DELETE the given key from the database**\n"
     + "• `/allkeys` - **Will give list of all KEYS in your Database**\n"
     + "• `/setthumb <telegraph link>` - **Will set Thumbnail**\n"
+    + "• `/shift <from id> | <to id>` - **Will shift all posts**\n"
     + "• `/webdump <link> <filename> <caption>` - **It will download the file from link and dump it in DUMP_CHANNEL, filename required**\n"
     + "• `/linkdl <link>` - **Will Download from direct link**\n"
     + "• `/listauth` - **Will list all the Authorized User**\n"
