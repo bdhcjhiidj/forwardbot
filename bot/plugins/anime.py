@@ -324,7 +324,11 @@ async def get_anime(event):
 
 @user.on(events.NewMessage(outgoing=True, pattern="\\.anime"))
 async def get_anime(event):
-    input_str = event.text.split(" ", maxsplit=1)[1]
+    input_str = ""
+    try:
+        input_str = event.text.split(" ", maxsplit=1)[1]
+    except BaseException:
+        pass
     reply = await event.get_reply_message()
     if not input_str:
         if reply:
