@@ -9,7 +9,7 @@ async def _(e):
     msg = await e.reply("`Searching ...`")
     try:
         keyword = e.text.split(" ", maxsplit=1)[1]
-    except:
+    except BaseException:
         pass
     if not keyword:
         return await msg.edit("`Provide a Keyword to search`")
