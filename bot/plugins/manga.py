@@ -5,9 +5,13 @@ INLOCK = "`Seems like inline messages aren't allowed here`"
 
 @bot.on(events.NewMessage(incoming=True, pattern="/manga"))
 async def _(e):
+    keyword = ""
     msg = await e.reply("`Searching ...`")
-    keyword = e.text.split(" ", maxsplit=1)[1]
-    if keyword is None:
+    try:
+        keyword = e.text.split(" ", maxsplit=1)[1]
+    except:
+        pass
+    if not keyword:
         return await msg.edit("`Provide a Keyword to search`")
     try:
         animes = await user.inline_query("animedb_bot", f"<m> {keyword}")
