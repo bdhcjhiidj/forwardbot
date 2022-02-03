@@ -79,7 +79,7 @@ async def _(e):
             o = await bot.get_entity(id)
         except BaseException:
             o = None
-        if u:
+        if o:
             if o.username:
                 txt += f"@{o.username} ({o.id})\n"
             else:
