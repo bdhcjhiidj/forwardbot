@@ -32,7 +32,7 @@ async def search(event):
     query = ""
     try:
         query = event.text.split(" ", maxsplit=1)[1]
-    except:
+    except BaseException:
         pass
     if not query:
         return await event.reply("`Plz gib some query to search`")
