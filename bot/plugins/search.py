@@ -29,7 +29,13 @@ async def search(event):
         return await event.reply(
             "You are Banned contact the Admin of the Bot for Unban"
         )
-    query = event.text.split(" ", maxsplit=1)[1]
+    query = ""
+    try:
+        query = event.text.split(" ", maxsplit=1)[1]
+    except:
+        pass
+    if not query:
+        return await event.reply("`Plz gib some query to search`")
     btn = [Button.inline("CANCEL PROCESS", data="cnc")]
     x = await event.reply("`searching...`", buttons=btn)
     async for message in user.iter_messages(Var.GROUP_ID, search=query):
