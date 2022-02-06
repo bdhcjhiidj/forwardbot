@@ -22,6 +22,7 @@ X = []
 A = []
 B = []
 
+
 @bot.on(
     events.NewMessage(incoming=True, pattern="\\/search", func=lambda e: e.is_private)
 )
@@ -67,11 +68,15 @@ async def search(event):
 @bot.on(events.callbackquery.CallbackQuery(data=re.compile("cnc")))
 async def _(event):
     Z.append(event.sender_id)
-#--------------------&&&----------
+
+
+# --------------------&&&----------
 
 
 @bot.on(
-    events.NewMessage(incoming=True, pattern="\\/moviesearch", func=lambda e: e.is_private)
+    events.NewMessage(
+        incoming=True, pattern="\\/moviesearch", func=lambda e: e.is_private
+    )
 )
 async def search(event):
     if is_ban(event.sender_id):
