@@ -26,7 +26,7 @@ async def _(e):
             return
     async for msg in user.iter_messages(int(c), reverse=True):
         try:
-            await asyncio.sleep(1.5)
+            await asyncio.sleep(2.5)
             m = await bot.get_messages(int(c), ids=msg.id)
             await bot.send_message(int(d), m)
         except BaseException:
