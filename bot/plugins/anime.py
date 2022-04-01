@@ -1,7 +1,9 @@
 # ported from https://github.com/sandy1709/catuserbot
 # modified by @kaif-00z
 
+import os
 import textwrap
+
 
 import aiohttp
 import jikanpy
@@ -9,8 +11,10 @@ import requests
 from html_telegraph_poster import TelegraphPoster
 from jikanpy import Jikan
 from pySmartDL import SmartDL
+from telethon.utils import get_display_name
 
 from . import *
+
 
 jikan = Jikan()
 
@@ -97,7 +101,7 @@ async def anime_json_synomsis(query, vars_):
 
 async def post_to_telegraph(page_title, html_format_content):
     post_client = TelegraphPoster(use_api=True)
-    auth_name = "ForwarderBot"
+    auth_name = get_display_name(await bot.get_entity(bot.me.username))
     post_client.create_api_token(auth_name)
     post_page = post_client.post(
         title=page_title,
@@ -282,16 +286,16 @@ async def get_anime_manga(mal_id, search_type, _user_id):  # sourcery no-metrics
     return caption, image
 
 
-@bot.on(events.NewMessage(incoming=True, pattern="\\/anime"))
+@bot.on(events.NewMessage(incoming=True, pattern="\\/anime ?(.*)"))
 async def get_anime(event):
-    input_str = event.text.split(" ", maxsplit=1)[1]
+    input_str = event.pattern_match.group(1)
     reply = await event.get_reply_message()
     if not input_str:
         if reply:
             input_str = reply.text
         else:
             return await event.reply(
-                "`What should i search ? Gib me Something to Search`"
+                "`What should i search ? Give me Something to Search`"
             )
     x = await event.reply("`Searching Anime...`")
     jikan = jikanpy.jikan.Jikan()
@@ -303,64 +307,18 @@ async def get_anime(event):
         downloader.start(blocking=False)
         while not downloader.isFinished():
             pass
-        await event.client.send_file(
-            event.chat_id,
+        await event.reply(
+	    caption,
             file=anime_path,
-            caption=caption,
             parse_mode="HTML",
         )
         await x.delete()
         os.remove(anime_path)
     except BaseException:
         image = getBannerLink(first_mal_id, True)
-        await event.client.send_file(
-            event.chat_id,
+        await event.reply(
+	    caption,
             file=image,
-            caption=caption,
-            parse_mode="HTML",
-        )
-        await x.delete()
-
-
-@user.on(events.NewMessage(outgoing=True, pattern="\\.anime"))
-async def get_anime(event):
-    input_str = ""
-    try:
-        input_str = event.text.split(" ", maxsplit=1)[1]
-    except BaseException:
-        pass
-    reply = await event.get_reply_message()
-    if not input_str:
-        if reply:
-            input_str = reply.text
-        else:
-            return await event.reply(
-                "`What should i search ? Gib me Something to Search`"
-            )
-    x = await event.reply("`Searching Anime...`")
-    jikan = jikanpy.jikan.Jikan()
-    search_result = jikan.search("anime", input_str)
-    first_mal_id = search_result["results"][0]["mal_id"]
-    caption, image = await get_anime_manga(first_mal_id, "anime_anime", event.chat_id)
-    try:
-        downloader = SmartDL(image, anime_path, progress_bar=False)
-        downloader.start(blocking=False)
-        while not downloader.isFinished():
-            pass
-        await event.client.send_file(
-            event.chat_id,
-            file=anime_path,
-            caption=caption,
-            parse_mode="HTML",
-        )
-        await x.delete()
-        os.remove(anime_path)
-    except BaseException:
-        image = getBannerLink(first_mal_id, True)
-        await event.client.send_file(
-            event.chat_id,
-            file=image,
-            caption=caption,
             parse_mode="HTML",
         )
         await x.delete()
