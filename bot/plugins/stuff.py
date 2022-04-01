@@ -16,6 +16,7 @@
 
 from . import *
 
+
 @bot.on(events.NewMessage(incoming=True, pattern="\\/ping"))
 async def _(event):
     t = time.time()
@@ -25,7 +26,6 @@ async def _(event):
     v = ts(int((now - uptime).seconds) * 1000)
     p = float(str(tt)) * 1000
     await x.edit(f"**Uptime**: {v}\n**Pɪɴɢ !!**: {int(p)}ms")
-
 
 
 @bot.on(events.NewMessage(incoming=True, pattern="\\/start"))
