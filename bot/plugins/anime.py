@@ -4,7 +4,6 @@
 import os
 import textwrap
 
-
 import aiohttp
 import jikanpy
 import requests
@@ -14,7 +13,6 @@ from pySmartDL import SmartDL
 from telethon.utils import get_display_name
 
 from . import *
-
 
 jikan = Jikan()
 
@@ -308,7 +306,7 @@ async def get_anime(event):
         while not downloader.isFinished():
             pass
         await event.reply(
-	    caption,
+            caption,
             file=anime_path,
             parse_mode="HTML",
         )
@@ -317,7 +315,7 @@ async def get_anime(event):
     except BaseException:
         image = getBannerLink(first_mal_id, True)
         await event.reply(
-	    caption,
+            caption,
             file=image,
             parse_mode="HTML",
         )
