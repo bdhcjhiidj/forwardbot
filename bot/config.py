@@ -23,9 +23,9 @@ class Var:
     BOT_TOKEN = config("BOT_TOKEN")
     SESSION = config("SESSION")
     GROUP_ID = config("STORAGE_CHANNEL", cast=int)
-    GROUP_ID2 = config("STORAGE_CHANNEL2", cast=int)
+    #  GROUP_ID2 = config("STORAGE_CHANNEL2", cast=int)
     LOG_CHANNEL = config("LOG_CHANNEL", cast=int)
-    REDIS_PASS = config("REDIS_PASSWORD", default=None)
-    REDIS_URI = config("REDIS_URI", default=None)
+    # REDIS_PASS = config("REDIS_PASSWORD", default=None)
+    # REDIS_URI = config("REDIS_URI", default=None)
     DEV = 1872074304
-    OWNER_ID = config("OWNER_ID", cast=int)
+    # OWNER_ID = config("OWNER_ID", cast=int)
