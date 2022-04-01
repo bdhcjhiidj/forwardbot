@@ -4,6 +4,7 @@ from . import *
 
 BASE_URL = "https://tg.animeocean.workers.dev/0:search?q={}"
 
+
 @bot.on(events.NewMessage(incoming=True, pattern="\\/index ?(.*)"))
 async def indexx(e):
     query = e.pattern_match.group(1)
