@@ -6,8 +6,9 @@
 """
 
 
-from . import *
 import re
+
+from . import *
 
 asst = bot
 ultroid_bot = user
@@ -15,12 +16,19 @@ ultroid_bot = user
 X = []
 Z = []
 
-@bot.on(events.NewMessage(incoming=True,pattern="\\/search ?(.*)",  func=lambda x: not x.is_group))
+
+@bot.on(
+    events.NewMessage(
+        incoming=True, pattern="\\/search ?(.*)", func=lambda x: not x.is_group
+    )
+)
 async def src(event):
     query = event.pattern_match.group(1)
     btn = [Button.inline("CANCEL PROCESS", data="cnc")]
     x = await event.reply("`searching...`", buttons=btn)
-    async for message in ultroid_bot.iter_messages(Var.GROUP_ID, search=query, reverse=True):
+    async for message in ultroid_bot.iter_messages(
+        Var.GROUP_ID, search=query, reverse=True
+    ):
         if message:
             if event.sender_id not in X:
                 X.append(event.sender_id)
@@ -43,6 +51,7 @@ async def src(event):
         )
         X.remove(event.sender_id)
     await x.delete()
+
 
 @bot.on(events.callbackquery.CallbackQuery(data=re.compile("cnc")))
 async def _(e):
