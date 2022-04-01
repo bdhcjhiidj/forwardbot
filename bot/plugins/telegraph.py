@@ -23,7 +23,3 @@ async def _(event):
             except Exception as e:
                 LOGS.info(str(e))
                 await event.reply(f"Error Occurred - {e}")
-
-
-
-
