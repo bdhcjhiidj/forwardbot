@@ -27,19 +27,6 @@ basicConfig(format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s", level=
 LOGS = getLogger(__name__)
 
 
-try:
-    redis_info = Var.REDIS_URI.split(":")
-    dB = Redis(
-        host=redis_info[0],
-        port=redis_info[1],
-        password=Var.REDIS_PASS,
-        charset="utf-8",
-        decode_responses=True,
-    )
-    LOGS.info("successfully connected to redis database")
-except Exception:
-    sys.exit(Exception)
-    LOGS.info(str(Exception))
 
 try:
     user = TelegramClient(StringSession(Var.SESSION), Var.API_ID, Var.API_HASH)
