@@ -25,19 +25,5 @@ async def _(event):
                 await event.reply(f"Error Occurred - {e}")
 
 
-@user.on(events.NewMessage(outgoing=True, pattern=".telegraph"))
-async def _(event):
-    if not event.reply_to:
-        return await event.edit("`Plz Reply to photo,gif,media`")
-    if event.reply_to_msg_id:
-        msg = await event.get_reply_message()
-        if msg.photo or msg.video or msg.gif:
-            getit = await user.download_media(msg)
-            try:
-                variable = uf(getit)
-                os.remove(getit)
-                nn = "https://telegra.ph" + variable[0]
-                await event.edit(f"Uploaded to [Telegraph]({nn}) !")
-            except Exception as e:
-                LOGS.info(str(e))
-                await event.edit(f"Error Occurred - {e}")
+
+
