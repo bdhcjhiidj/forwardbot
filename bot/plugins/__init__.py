@@ -26,7 +26,7 @@ from bot.config import Var
 from bot.FastTelethon import download_file, upload_file
 from bot.func import *
 
-from .dbs.auth import *
+
 
 # some function
 
