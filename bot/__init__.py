@@ -27,7 +27,6 @@ basicConfig(format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s", level=
 LOGS = getLogger(__name__)
 
 
-
 try:
     user = TelegramClient(StringSession(Var.SESSION), Var.API_ID, Var.API_HASH)
     bot = TelegramClient(None, Var.API_ID, Var.API_HASH)
