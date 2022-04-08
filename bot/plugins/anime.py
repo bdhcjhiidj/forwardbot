@@ -98,7 +98,7 @@ async def anime_json_synomsis(query, vars_):
 
 async def post_to_telegraph(page_title, html_format_content):
     post_client = TelegraphPoster(use_api=True)
-    auth_name = (await event.client.get_me()).first_name
+    auth_name = (await bot.get_me()).first_name
     post_client.create_api_token(auth_name)
     post_page = post_client.post(
         title=page_title,
