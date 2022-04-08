@@ -10,7 +10,6 @@ import requests
 from html_telegraph_poster import TelegraphPoster
 from jikanpy import Jikan
 from pySmartDL import SmartDL
-from telethon.utils import get_display_name
 
 from . import *
 
@@ -99,7 +98,7 @@ async def anime_json_synomsis(query, vars_):
 
 async def post_to_telegraph(page_title, html_format_content):
     post_client = TelegraphPoster(use_api=True)
-    auth_name = ((await event.client.get_me()).first_name)
+    auth_name = (await event.client.get_me()).first_name
     post_client.create_api_token(auth_name)
     post_page = post_client.post(
         title=page_title,
