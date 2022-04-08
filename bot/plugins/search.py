@@ -32,7 +32,7 @@ async def src(event):
         if message:
             if event.sender_id not in X:
                 X.append(event.sender_id)
-            msg = await asst.get_messages(udB.get_key("DUMP_CHANNEL"), ids=message.id)
+            msg = await asst.get_messages(Var.GROUP_ID, ids=message.id)
             await asst.send_message(event.chat_id, msg)
             if event.sender_id in Z:
                 Z.remove(event.sender_id)
